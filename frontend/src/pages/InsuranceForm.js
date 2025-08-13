@@ -7,7 +7,7 @@ import CustomAlert from './../components/CustomAlert';
 import EditorButtons from './../components/EditorButtons';
 import EditorHeader from './../components/EditorHeader';
 import Spacer from './../components/Spacer';
-import ENDPOINTS  from "../endpoints";
+import {ENDPOINTS} from "../endpoints";
 
 import {
   Box,
