@@ -7,6 +7,7 @@ import CustomAlert from './../components/CustomAlert';
 import EditorButtons from './../components/EditorButtons';
 import EditorHeader from './../components/EditorHeader';
 import Spacer from './../components/Spacer';
+import ENDPOINTS  from "../endpoints";
 
 import {
   Box,
@@ -61,7 +62,7 @@ const InsuranceForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/predict/', {
+      const response = await fetch(ENDPOINTS.GET_INSURANCE_PREDICTION, {
         method: 'POST',
         body: JSON.stringify(modifiedFormData),
         headers: {
