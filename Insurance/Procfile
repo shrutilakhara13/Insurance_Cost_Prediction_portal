@@ -1,1 +1,1 @@
-web: gunicorn Insurance.wsgi:application
+web: gunicorn Insurance.Insurance.wsgi:application
