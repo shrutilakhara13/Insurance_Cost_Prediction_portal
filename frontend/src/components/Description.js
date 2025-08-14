@@ -71,7 +71,7 @@ const Description = () => {
                             color={theme.palette.error.dark} 
                             icon={ShareSquareIcon}
                             title='Send the Data for Prediction'
-                            subtitle='Click on Result button to know the prediction of model.'
+                            subtitle='Click on the Get Data button to know the prediction of the model.'
                         />           
                         <DescriptionItem 
                             color={theme.palette.primary.main} 

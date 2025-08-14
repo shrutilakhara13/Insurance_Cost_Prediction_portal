@@ -27,10 +27,10 @@ const EditorHeader = () => {
                     Fill the 
                     {' '}
                     <span style={{ color: green[600] }}>
-                    Detail 
+                    details 
                     </span>
                     {' '}
-                     to get the Cost
+                     to get the cost
                 </Typography>
             </Box>
         </>

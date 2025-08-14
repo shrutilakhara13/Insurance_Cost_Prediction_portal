@@ -7,7 +7,7 @@ import CustomAlert from './../components/CustomAlert';
 import EditorButtons from './../components/EditorButtons';
 import EditorHeader from './../components/EditorHeader';
 import Spacer from './../components/Spacer';
-import {ENDPOINTS} from "../endpoints";
+import { ENDPOINTS } from "../endpoints";
 
 import {
   Box,
@@ -72,7 +72,7 @@ const InsuranceForm = () => {
       const data = await response.json();
       setSend(true);
       setResult(true);
-      setPrediction(data.prediction);  // Set prediction properly here
+      setPrediction(data.prediction);
       console.log(data.prediction);
       console.log(modifiedFormData);
     } catch (error) {
@@ -82,7 +82,7 @@ const InsuranceForm = () => {
 
   const handleDownload = () => {
     const documentDefinition = {
-      content: [   // fixed key from 'context' to 'content'
+      content: [
         { text: "Insurance", style: "header" },
         { text: "Age: " + formData.age },
         { text: "Sex: " + (formData.sex === "0" ? "Male" : "Female") },
@@ -113,111 +113,178 @@ const InsuranceForm = () => {
       <Helmet>
         <title>Form</title>
       </Helmet>
-      <Box backgroundColor={theme.palette.background.default} minHeight='100%' pt={15} pb={15}>
+      <Box
+        backgroundColor={theme.palette.background.default}
+        minHeight='100%'
+        pt={15}
+        pb={15}
+      >
         <Container maxWidth={false}>
-          <Grid container spacing={3}>
-            <Grid container alignItems='center' justifyContent='space-between' mt='-30px' spacing={3} xs={12}>
-              <Grid item>
-                <EditorHeader />
-              </Grid>
-              <Grid item xs={12}>
-                {send && (
-                  <CustomAlert variant='outlined' severity='success' title='Success'>
-                    Successfully sent the detail to the machine learning model
-                  </CustomAlert>
-                )}
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Card>
-                  <CardContent>
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <TextField label="Age" type="number" name="age" value={formData.age} onChange={handleChange} margin="normal" fullWidth />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField label="BMI" type="number" name="bmi" value={formData.bmi} onChange={handleChange} margin="normal" fullWidth />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          label="Smoker"
-                          select
-                          name="smoker"
-                          value={formData.smoker}
-                          onChange={handleChange}
-                          margin="normal"
-                          fullWidth
-                        >
-                          <MenuItem value='0'>Smoker</MenuItem>
-                          <MenuItem value='1'>Non-Smoker</MenuItem>
-                        </TextField>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          label="Sex"
-                          select
-                          name="sex"
-                          value={formData.sex}
-                          onChange={handleChange}
-                          margin="normal"
-                          fullWidth
-                        >
-                          <MenuItem value='0'>Male</MenuItem>
-                          <MenuItem value='1'>Female</MenuItem>
-                        </TextField>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField label="Children" type="number" name="children" value={formData.children} onChange={handleChange} margin="normal" fullWidth />
-                      </Grid>
-                      <Grid item xs={12}>
-                        <TextField
-                          label="Region"
-                          select
-                          name="region"
-                          value={formData.region}
-                          onChange={handleChange}
-                          margin="normal"
-                          fullWidth
-                        >
-                          <MenuItem value='0'>Southeast</MenuItem>
-                          <MenuItem value='1'>Southwest</MenuItem>
-                          <MenuItem value='2'>Northwest</MenuItem>
-                          <MenuItem value='3'>Northeast</MenuItem>
-                        </TextField>
-                      </Grid>
+          <Grid
+            container
+            spacing={3}
+            justifyContent="flex-start"
+            alignItems="flex-start"
+          >
+            <Grid item>
+              <EditorHeader />
+            </Grid>
+            <Grid item xs={12}>
+              {send && (
+                <CustomAlert variant='outlined' severity='success' title='Success'>
+                  Successfully sent the detail to the machine learning model
+                </CustomAlert>
+              )}
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Card>
+                <CardContent>
+                  <Grid
+                    container
+                    spacing={2}
+                    justifyContent="flex-start"
+                    alignItems="flex-start"
+                  >
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Age"
+                        type="number"
+                        name="age"
+                        value={formData.age}
+                        onChange={handleChange}
+                        margin="normal"
+                        fullWidth
+                      />
                     </Grid>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Card>
-                  <CardContent>
-                    <Box display='flex' justifyContent='center' mb={2} mt={2}>
-                      <Typography variant="h2" align="center" gutterBottom>
-                        Result
-                      </Typography>
-                    </Box>
-                    <Box justifyContent='center'>
-                      {result && (
-                        <>
-                          <Typography variant="h5" align="center" gutterBottom>
-                            The machine learning model has predicted the cost of Insurance:
-                          </Typography>{"\n"}
-                          <Typography variant="h1" align="center" gutterBottom>
-                            <span style={{ color: green[600], fontSize: '50px' }}>
-                              {`$${prediction}`}
-                            </span>
-                          </Typography>
-                        </>
-                      )}
-                    </Box>
-                  </CardContent>
-                </Card>
-              </Grid>
-              <Grid item xs={12}>
-                <Box margin={4}>
-                  <EditorButtons submitOnClick={handleSubmit} downloadOnClick={handleDownload} />
-                </Box>
-              </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="BMI"
+                        type="number"
+                        name="bmi"
+                        value={formData.bmi}
+                        onChange={handleChange}
+                        margin="normal"
+                        fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Smoker"
+                        select
+                        name="smoker"
+                        value={formData.smoker}
+                        onChange={handleChange}
+                        margin="normal"
+                        fullWidth
+                      >
+                        <MenuItem value='0'>Smoker</MenuItem>
+                        <MenuItem value='1'>Non-Smoker</MenuItem>
+                      </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Sex"
+                        select
+                        name="sex"
+                        value={formData.sex}
+                        onChange={handleChange}
+                        margin="normal"
+                        fullWidth
+                      >
+                        <MenuItem value='0'>Male</MenuItem>
+                        <MenuItem value='1'>Female</MenuItem>
+                      </TextField>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Children"
+                        type="number"
+                        name="children"
+                        value={formData.children}
+                        onChange={handleChange}
+                        margin="normal"
+                        fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        label="Region"
+                        select
+                        name="region"
+                        value={formData.region}
+                        onChange={handleChange}
+                        margin="normal"
+                        fullWidth
+                      >
+                        <MenuItem value='0'>Southeast</MenuItem>
+                        <MenuItem value='1'>Southwest</MenuItem>
+                        <MenuItem value='2'>Northwest</MenuItem>
+                        <MenuItem value='3'>Northeast</MenuItem>
+                      </TextField>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Card>
+                <CardContent>
+                  <Box display="flex" flexDirection="column" alignItems="flex-start">
+                    <Typography variant="h2" align="left" gutterBottom>
+                      Result
+                    </Typography>
+                    {result && (
+                      <>
+                        <Typography variant="h5" align="left" gutterBottom>
+                          The machine learning model has predicted the cost of Insurance:
+                        </Typography>
+                        {/* <Typography variant="h5" align="left" gutterBottom>
+                          Age: {formData.age}
+                        </Typography>
+                        <Typography variant="h5" align="left" gutterBottom>
+                          Sex: {formData.sex === "0" ? "Male" : "Female"}
+                        </Typography>
+                        <Typography variant="h5" align="left" gutterBottom>
+                          BMI: {formData.bmi}
+                        </Typography>
+                        <Typography variant="h5" align="left" gutterBottom>
+                          Children: {formData.children}
+                        </Typography>
+                        <Typography variant="h5" align="left" gutterBottom>
+                          Smoker: {formData.smoker === "0" ? "Smoker" : "Non-smoker"}
+                        </Typography>
+                        <Typography variant="h5" align="left" gutterBottom>
+                          Region: {
+                            formData.region === "0"
+                              ? "Southeast"
+                              : formData.region === "1"
+                              ? "Southwest"
+                              : formData.region === "2"
+                              ? "Northwest"
+                              : "Northeast"
+                          }
+                        </Typography> */}
+                        <Typography
+                          variant="h4"
+                          align="left"
+                          sx={{ color: green[600], mt: 3 }}
+                          gutterBottom
+                        >
+                          Prediction: ${prediction}
+                        </Typography>
+                      </>
+                    )}
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Box margin={4} display="flex" flexDirection="row" alignItems="flex-start">
+                <EditorButtons submitOnClick={handleSubmit} downloadOnClick={handleDownload} />
+              </Box>
             </Grid>
           </Grid>
         </Container>
