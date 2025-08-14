@@ -54,7 +54,7 @@ const Hero = () => {
                 paddingBottom={3}
                 marginBottom='15px'
               >
-                Website will tell the Insurance Cost of the family
+                Website will tell the Insurance Cost of the family.
               </Typography>
             </Box>
             <HeroButtons />
